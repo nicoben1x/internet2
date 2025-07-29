@@ -1,0 +1,480 @@
+:root {
+    --azul-brillante: #00BFFF;
+    --gris-oscuro: #1A1A1A;
+    --negro-carbon: #0D0D0D;
+    --blanco: #FFFFFF;
+    --gris-claro: #CCCCCC;
+    --gris-metalico: #A0A0A0;
+    --gris-distincion: #151515; /* Nuevo color para distinción */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: var(--negro-carbon);
+    color: var(--gris-claro);
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navbar */
+.navbar {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--blanco);
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-placeholder {
+    width: 50px;
+    height: 50px;
+}
+
+.logo-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Para que la imagen se ajuste sin distorsionarse */
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.navbar .nav-links li {
+    margin-left: 30px;
+}
+
+.navbar .nav-links a {
+    color: var(--blanco);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+    color: var(--azul-brillante);
+    text-shadow: 0 0 8px rgba(0, 191, 255, 0.6); /* Resplandor suave y difuso */
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--blanco);
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--blanco);
+    overflow: hidden;
+}
+
+.matrix-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--negro-carbon);
+    z-index: -1;
+}
+
+.hero-content {
+    z-index: 1;
+    animation: fadeIn 2s ease-out;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem; /* Reducido */
+    margin-bottom: 0.8rem;
+    text-shadow: 0 0 10px rgba(0, 191, 255, 0.5); /* Resplandor suave y difuso */
+}
+
+.hero-content p {
+    font-size: 1.8rem; /* Aumentado */
+    margin-bottom: 2.5rem; /* Ajustado */
+}
+
+.btn-primary {
+    background-color: var(--azul-brillante);
+    color: var(--negro-carbon);
+    padding: 15px 30px; /* Agrandado */
+    font-size: 1.1rem; /* Aumentado */
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; /* Añadido transform a la transición */
+}
+
+.btn-primary:hover {
+    background-color: var(--blanco);
+    box-shadow: 0 8px 20px rgba(0, 191, 255, 0.4); /* Profundidad y resplandor */
+    transform: translateY(-3px) scale(1.02); /* Efecto de elevación y escala */
+}
+
+/* Sections General */
+section {
+    padding: 80px 0;
+    position: relative;
+    z-index: 2;
+}
+
+section:nth-child(even) {
+    background-color: var(--gris-oscuro);
+}
+
+section h2 {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--blanco);
+    text-shadow: 0 0 8px rgba(0, 191, 255, 0.4); /* Resplandor suave y difuso */
+}
+
+/* Plans Section */
+.plans-section {
+    background-color: var(--negro-carbon);
+}
+
+.plan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    justify-content: center; /* Añadido para centrar los planes */
+}
+
+.plan-card {
+    background-color: var(--gris-oscuro);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 191, 255, 0.15); /* Resplandor suave inicial */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición existente */
+    border: 1px solid rgba(0, 191, 255, 0.3);
+}
+
+.plan-card:hover {
+    transform: translateY(-8px) scale(1.01); /* Efecto de elevación y escala sutil */
+    box-shadow: 0 12px 25px rgba(0, 191, 255, 0.3); /* Mayor profundidad y resplandor */
+}
+
+.plan-card .icon {
+    font-size: 3rem;
+    color: var(--azul-brillante);
+    margin-bottom: 20px;
+    text-shadow: 0 0 8px rgba(0, 191, 255, 0.5); /* Resplandor suave y difuso */
+}
+
+.plan-card h3 {
+    font-size: 1.8rem;
+    color: var(--blanco);
+    margin-bottom: 10px;
+}
+
+.plan-card .speed {
+    font-size: 2.5rem;
+    color: var(--azul-brillante);
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.plan-card .description {
+    font-size: 1rem;
+    color: var(--gris-claro);
+    margin-bottom: 20px;
+    min-height: 60px; /* Asegura un alto mínimo para descripciones cortas */
+}
+
+.plan-card .price {
+    font-size: 2.2rem;
+    color: var(--blanco);
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.plan-card .features {
+    list-style: none;
+    margin-bottom: 25px;
+    text-align: left;
+    display: inline-block; /* Para centrar la lista */
+}
+
+.plan-card .features li {
+    font-size: 0.95rem;
+    color: var(--gris-metalico);
+    margin-bottom: 8px;
+}
+
+.plan-card .features li i {
+    color: var(--azul-brillante);
+    margin-right: 10px;
+}
+
+/* About Section */
+.about-section {
+    text-align: center;
+    background-color: var(--gris-distincion); /* Color de fondo distinto */
+}
+
+.about-content {
+    display: flex;
+    flex-direction: row; /* Por defecto en fila */
+    align-items: center;
+    gap: 50px; /* Espacio entre la imagen y el texto */
+    max-width: 1000px; /* Limitar el ancho del contenido */
+    margin: 0 auto; /* Centrar el contenido */
+}
+
+.about-image {
+    flex: 1; /* Permitir que la imagen tome espacio */
+    text-align: center;
+}
+
+.about-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 191, 255, 0.15); /* Sombra suave */
+}
+
+.about-description {
+    flex: 2; /* Permitir que la descripción tome más espacio */
+}
+
+.about-section p {
+    font-size: 1.1rem;
+    color: var(--gris-claro);
+    margin-bottom: 20px; /* Mantener margen entre párrafos */
+}
+
+/* Contact Section */
+.contact-section {
+    background-color: var(--negro-carbon);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: flex-start;
+}
+
+.contact-form-container {
+    background-color: var(--gris-oscuro);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 191, 255, 0.1); /* Sombra suave */
+    border: 1px solid rgba(0, 191, 255, 0.3);
+}
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--gris-metalico);
+    border-radius: 5px;
+    background-color: var(--negro-carbon);
+    color: var(--blanco);
+    font-size: 1rem;
+}
+
+.contact-form input::placeholder, .contact-form textarea::placeholder {
+    color: var(--gris-metalico);
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+    outline: none;
+    border-color: var(--azul-brillante);
+    box-shadow: 0 0 5px rgba(0, 191, 255, 0.5); /* Resplandor suave en enfoque */
+}
+
+.contact-form button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.contact-info-map {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.contact-info {
+    background-color: var(--gris-oscuro);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 191, 255, 0.1); /* Sombra suave */
+    border: 1px solid rgba(0, 191, 255, 0.3);
+}
+
+.contact-info h3 {
+    color: var(--blanco);
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.contact-info p {
+    color: var(--gris-claro);
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+}
+
+.contact-info p i {
+    color: var(--azul-brillante);
+    margin-right: 10px;
+}
+
+.map-container {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 191, 255, 0.1); /* Sombra suave */
+    border: 1px solid rgba(0, 191, 255, 0.3);
+}
+
+.map-container iframe {
+    border-radius: 10px;
+}
+
+/* WhatsApp Float Button */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25D366;
+    color: var(--blanco);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem; /* Aumentado para agrandar el logo */
+    text-decoration: none; /* Añadido para quitar la línea */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background-color: #128C7E;
+}
+
+/* Footer */
+footer {
+    background-color: var(--negro-carbon);
+    color: var(--gris-metalico);
+    text-align: center;
+    padding: 30px 0;
+    border-top: 1px solid rgba(0, 191, 255, 0.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Matrix effect (canvas will draw on .matrix-background) */
+canvas {
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.95);
+        position: absolute;
+        top: 80px;
+        left: 0;
+        padding: 20px 0;
+        border-top: 1px solid var(--azul-brillante);
+    }
+
+    .navbar .nav-links.active {
+        display: flex;
+    }
+
+    .navbar .nav-links li {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .hero-content h1 {
+        font-size: 2.8rem;
+        text-shadow: 0 0 8px rgba(0, 191, 255, 0.4); /* Resplandor suave y difuso */
+    }
+
+    .hero-content p {
+        font-size: 1.4rem;
+    }
+
+    .btn-primary {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    section h2 {
+        font-size: 2.5rem;
+    }
+
+    .plan-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-content {
+        flex-direction: column; /* Apilar en pantallas pequeñas */
+        text-align: center;
+    }
+
+    .about-image {
+        margin-bottom: 30px;
+    }
+
+    .about-section p {
+        margin-left: 0;
+        margin-right: 0;
+    }
+} 
