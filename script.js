@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <ul class="features">
                     ${featuresHtml}
                 </ul>
-                <a href="https://wa.me/5491158353221?text=Hola%2C%20me%20interesa%20el%20plan%20de%20${encodeURIComponent(plan.speed)}%20-${encodeURIComponent(plan.title)}." class="btn-primary" target="_blank">Contratar</a>
+                <a href="https://wa.me/5491127012267?text=Hola%2C%20me%20interesa%20el%20plan%20de%20${encodeURIComponent(plan.speed)}%20-${encodeURIComponent(plan.title)}." class="btn-primary" target="_blank">Contratar</a>
             `;
             planGrid.appendChild(planCard);
         });
