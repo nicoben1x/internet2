@@ -263,4 +263,27 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-}); 
+
+    // Contact Form Submission
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = this.querySelector('input[placeholder="Tu Nombre"]').value;
+            const address = this.querySelector('input[placeholder="Tu Dirección (opcional)"]').value;
+            const message = this.querySelector('textarea').value;
+
+            const whatsappNumber = '5491127012267'; // El número de WhatsApp del botón flotante
+            let whatsappMessage = `Hola, vengo de la página web, mi nombre es ${name}.`;
+            if (address) {
+                whatsappMessage += ` Mi dirección es ${address}.`;
+            }
+            whatsappMessage += ` Mensaje: ${message}`;
+
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+            window.open(whatsappUrl, '_blank');
+        });
+    }
+});
