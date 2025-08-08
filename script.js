@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <ul class="features">
                     ${featuresHtml}
                 </ul>
-                <a href="https://wa.me/5491127012267?text=Hola%2C%20me%20interesa%20el%20plan%20de%20${encodeURIComponent(plan.speed)}%20-${encodeURIComponent(plan.title)}." class="btn-primary" target="_blank">Contratar</a>
+                <button class="btn-primary hire-btn" data-plan-name="${plan.title}" data-plan-speed="${plan.speed}" data-plan-price="${plan.price}">Contratar</button>
             `;
             planGrid.appendChild(planCard);
         });
@@ -258,18 +258,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (carouselWrapper) {
-        // Re-query planCards after they have been dynamically added
-        planCards = document.querySelectorAll('.plan-card'); 
 
-        carouselButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                if (button.classList.contains('prev')) {
-                    currentIndex = (currentIndex - 1 + planCards.length) % planCards.length;
-                } else {
-                    currentIndex = (currentIndex + 1) % planCards.length;
-                }
-                updateCarousel();
-            });
+    // Update carousel on window resize
+    window.addEventListener('resize', () => {
+        planCards = document.querySelectorAll('.plan-card'); // Re-query in case of dynamic changes
+        createIndicators(); // Re-create indicators on resize to adjust to potential changes in planCards length
         });
 
         // Initial setup
@@ -306,6 +299,64 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateCarousel();
             }
         }
+    }
+
+    // Modal Functionality for Hiring
+    const modalOverlay = document.getElementById('coverage-modal');
+    const planGridForModal = document.querySelector('.plan-grid');
+
+    if (modalOverlay && planGridForModal) {
+        const modalCloseBtn = modalOverlay.querySelector('.modal-close');
+        const addressInput = modalOverlay.querySelector('#address-input');
+        const skipBtn = modalOverlay.querySelector('#skip-btn');
+        const sendAddressBtn = modalOverlay.querySelector('#send-address-btn');
+        let selectedPlanName = '';
+        let selectedPlanSpeed = '';
+
+        const openModal = () => modalOverlay.classList.remove('hidden');
+        const closeModal = () => {
+            modalOverlay.classList.add('hidden');
+            addressInput.value = ''; // Limpiar input al cerrar
+        };
+
+        const openWhatsApp = (message) => {
+            const whatsappNumber = '5491127012267';
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            closeModal();
+        };
+
+        // Usar delegación de eventos para los botones que se crean dinámicamente
+        planGridForModal.addEventListener('click', (e) => {
+            if (e.target && e.target.classList.contains('hire-btn')) {
+                selectedPlanName = e.target.dataset.planName;
+                selectedPlanSpeed = e.target.dataset.planSpeed;
+                openModal();
+            }
+        });
+
+        modalCloseBtn.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+        skipBtn.addEventListener('click', () => {
+            const message = `Hola, vengo desde la página web. Me interesa contratar el plan de ${selectedPlanSpeed} (${selectedPlanName}).`;
+            openWhatsApp(message);
+        });
+
+        sendAddressBtn.addEventListener('click', () => {
+            const address = addressInput.value.trim();
+            let message = `Hola, vengo desde la página web. Me interesa contratar el plan de ${selectedPlanSpeed} (${selectedPlanName}).`;
+            if (address) {
+                message += ` Mi dirección es ${address} para verificar la cobertura. Gracias.`;
+            } else {
+                message += ` Quisiera consultar por la cobertura. Gracias.`;
+            }
+            openWhatsApp(message);
+        });
     }
 
     // Contact Form Submission
