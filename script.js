@@ -199,6 +199,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Update button text
                 promoBtn.textContent = discountApplied ? 'Quitar Descuento' : 'Ver Precios con Descuento';
+
+                // Scroll to plans section
+                document.querySelector('#planes').scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         }, 100); // Pequeño delay para asegurar la carga de los elementos
     }
