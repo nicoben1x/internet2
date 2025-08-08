@@ -164,6 +164,45 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Promotion Button Functionality
+    const promoBtn = document.getElementById('promo-btn');
+    let discountApplied = false;
+
+    if (promoBtn) {
+        const originalPrices = [];
+        // Esperamos un instante para asegurarnos de que los planes se hayan renderizado
+        setTimeout(() => {
+            const planPriceElements = document.querySelectorAll('.plan-card .price');
+            
+            planPriceElements.forEach(priceEl => {
+                originalPrices.push(priceEl.innerHTML);
+            });
+
+            promoBtn.addEventListener('click', () => {
+                discountApplied = !discountApplied; // Toggle state
+
+                planPriceElements.forEach((priceEl, index) => {
+                    if (discountApplied) {
+                        // Apply discount
+                        const originalPriceHTML = originalPrices[index];
+                        const priceString = originalPriceHTML.split('<span>')[0].replace('$', '').replace('.', '');
+                        const priceNumber = parseInt(priceString, 10);
+                        const discountedPrice = Math.round(priceNumber * 0.9);
+                        const formattedDiscountedPrice = '$' + discountedPrice.toLocaleString('es-AR');
+                        
+                        priceEl.innerHTML = `${formattedDiscountedPrice}<span>/mes</span> <s style="font-size: 0.8em; color: var(--gris-metalico);">${originalPriceHTML.split('<span>')[0]}</s>`;
+                    } else {
+                        // Restore original price
+                        priceEl.innerHTML = originalPrices[index];
+                    }
+                });
+
+                // Update button text
+                promoBtn.textContent = discountApplied ? 'Quitar Descuento' : 'Ver Precios con Descuento';
+            });
+        }, 100); // Pequeño delay para asegurar la carga de los elementos
+    }
+
     // Carousel functionality for plans on mobile
     const carouselWrapper = document.querySelector('.carousel-wrapper');
     const carouselButtons = document.querySelectorAll('.carousel-button');

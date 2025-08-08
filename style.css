@@ -141,6 +141,44 @@ body {
     transform: translateY(-3px) scale(1.02); /* Efecto de elevación y escala */
 }
 
+/* Promo Section */
+.promo-section {
+    background: linear-gradient(45deg, var(--azul-brillante), #0077b6);
+    color: var(--blanco);
+    text-align: center;
+    padding: 60px 0;
+}
+
+.promo-section h2 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.promo-section p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 25px auto;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--blanco);
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    border: 2px solid var(--blanco);
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: var(--blanco);
+    color: var(--negro-carbon);
+    transform: translateY(-3px) scale(1.02);
+}
+
 /* Sections General */
 section {
     padding: 80px 0;
@@ -315,6 +353,13 @@ section h2 {
     outline: none;
     border-color: var(--azul-brillante);
     box-shadow: 0 0 5px rgba(0, 191, 255, 0.5); /* Resplandor suave en enfoque */
+}
+
+.contact-form .whatsapp-notice {
+    font-size: 0.9rem;
+    color: var(--gris-metalico);
+    text-align: center;
+    margin-bottom: 15px;
 }
 
 .contact-form button {
